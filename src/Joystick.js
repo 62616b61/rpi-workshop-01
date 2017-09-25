@@ -17,6 +17,6 @@ module.exports = class Joystick {
       adc.read(0, value => {
         console.log('channel 0:', value)
       })
-    })
+    }, 200)
   }
 }
