@@ -1,7 +1,5 @@
 const express = require('express')
 
-
-
 module.exports = class Server {
   constructor (events) {
     this.events = events
@@ -13,13 +11,13 @@ module.exports = class Server {
 
   routes () {
     this.app.get('/move/:direction', (req, res) => {
-      res.send('Hello World!', req.params.direction)
+      res.send(req.params.direction)
     })
   }
 
   listen () {
     this.app.listen(3000, function () {
-      console.log('Example app listening on port 3000!')
+      console.log('Listening on port 3000!')
     })
   }
 }
