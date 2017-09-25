@@ -11,7 +11,10 @@ module.exports = class Server {
 
   routes () {
     this.app.get('/move/:direction', (req, res) => {
-      res.send(req.params.direction)
+      const direction = req.params.direction
+
+      this.events.init('move', direction)
+      res.sendStatus(200)
     })
   }
 
