@@ -12,7 +12,7 @@ module.exports = class Comms {
   }
 
   transmit (direction) {
-    request.get(`${this.host}:${this.port}/move/${direction}`)
+    request.get(`http://${this.host}:${this.port}/move/${direction}`)
     console.log('direction:', direction)
   }
 
