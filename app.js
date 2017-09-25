@@ -1,7 +1,12 @@
+const EventEmitter = require('events')
 const Raspi = require('raspi-io')
 const five = require('johnny-five')
 
+const Server = require('./src/Server')
+const Snake = require('./src/Snake')
 const Matrix = require('./src/Matrix')
+
+const events = new EventEmitter()
 
 const board = new five.Board({
   io: new Raspi({
@@ -15,6 +20,7 @@ const board = new five.Board({
 })
 
 board.on('ready', () => {
+
   const register = new five.ShiftRegister({
     isAnode: true,
     pins: {
@@ -26,59 +32,7 @@ board.on('ready', () => {
   })
   register.reset()
 
-  const matrix = new Matrix(register)
-
-  setInterval(() => {
-    setTimeout(() => {
-      matrix.setPicture([
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 1, 1, 1, 0, 0],
-        [0, 0, 1, 1, 1, 1, 0, 0],
-        [0, 0, 1, 1, 1, 1, 0, 0],
-        [0, 0, 1, 1, 1, 1, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0]
-      ])
-    }, 100)
-
-    setTimeout(() => {
-      matrix.setPicture([
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 1, 1, 1, 1, 1, 1, 0],
-        [0, 1, 1, 1, 1, 1, 1, 0],
-        [0, 1, 1, 0, 0, 1, 1, 0],
-        [0, 1, 1, 0, 0, 1, 1, 0],
-        [0, 1, 1, 1, 1, 1, 1, 0],
-        [0, 1, 1, 1, 1, 1, 1, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0]
-      ])
-    }, 200)
-
-    setTimeout(() => {
-      matrix.setPicture([
-        [1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 0, 0, 0, 0, 1, 1],
-        [1, 1, 0, 0, 0, 0, 1, 1],
-        [1, 1, 0, 0, 0, 0, 1, 1],
-        [1, 1, 0, 0, 0, 0, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1]
-      ])
-    }, 300)
-
-    setTimeout(() => {
-      matrix.setPicture([
-        [1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 1, 1, 0, 0, 1],
-        [1, 0, 0, 1, 1, 0, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1]
-      ])
-    }, 400)
-  }, 400)
+  const server = new Server(events)
+  const snake = new Snake(events)
+  const matrix = new Matrix(events, register)
 })
