@@ -13,7 +13,7 @@ module.exports = class Server {
     this.app.get('/move/:direction', (req, res) => {
       const direction = req.params.direction
 
-      this.events.init('move', direction)
+      this.events.emit('move', direction)
       res.sendStatus(200)
     })
   }
