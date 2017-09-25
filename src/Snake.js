@@ -22,9 +22,8 @@ module.exports = class Snake {
       if (!this.paused) {
         this.eatFood()
         this.updateSnake()
+        this.emit()
       }
-
-      this.emit()
     }, 250)
   }
 
