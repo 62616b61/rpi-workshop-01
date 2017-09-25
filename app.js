@@ -9,6 +9,7 @@ const Matrix = require('./src/Matrix')
 const events = new EventEmitter()
 
 const board = new five.Board({
+  repl: false,
   io: new Raspi({
     excludePins: [
       'P1-19',
