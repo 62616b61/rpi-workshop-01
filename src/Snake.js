@@ -3,6 +3,7 @@ const random = (x, y) => Math.floor(Math.random() * y) + x
 module.exports = class Snake {
   constructor (events) {
     this.events = events
+    this.paused = true
 
     this.worldSize = 8
     this.speed = {x: -1, y: 0}
@@ -18,8 +19,11 @@ module.exports = class Snake {
 
   loop () {
     setInterval(() => {
-      this.eatFood()
-      this.updateSnake()
+      if (!this.paused) {
+        this.eatFood()
+        this.updateSnake()
+      }
+
       this.emit()
     }, 250)
   }
@@ -68,6 +72,8 @@ module.exports = class Snake {
   }
 
   move (direction) {
+    if (this.paused) this.paused = false
+
     switch (direction) {
       case 'up':
         this.speed.x = -1
