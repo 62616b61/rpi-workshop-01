@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "Cry",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "clear": "0.0.1",
+    "mcp3008.js": "^0.4.0"
+  }
 }
