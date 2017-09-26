@@ -20,7 +20,7 @@ module.exports = class Server {
   }
 
   listen () {
-    this.app.listen(3000, function () {
+    this.app.listen(3000, () => {
       console.log('Listening on port 3000!')
     })
   }
