@@ -1,3 +1,3 @@
 ## Step 2
 
-joystick + basic game world
+spin up a server to listen to requests
