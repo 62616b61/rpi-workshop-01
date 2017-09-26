@@ -1,3 +1,3 @@
 ## Step 1
 
-receive raw data from joystick
+parse raw data to more convenient format
