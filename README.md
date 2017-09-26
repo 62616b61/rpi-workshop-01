@@ -1,3 +1,3 @@
-## Step 1
+## Step 3
 
-receive raw data from joystick
+send data to another raspberry pi
