@@ -4,7 +4,7 @@ const request = require('request')
 
 const { SERVER_HOST, SERVER_PORT } = process.env
 
-module.exports = class Comms {
+module.exports = class Transmitter {
   constructor (events) {
     this.events = events
 
