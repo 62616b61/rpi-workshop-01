@@ -1,4 +1,5 @@
 const EventEmitter = require('events')
+
 const Joystick = require('./src/Joystick')
 const Comms = require('./src/Comms')
 
